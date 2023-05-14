@@ -24,7 +24,7 @@ class Control {
         {
             $this->controlador = ucwords($url[0]);
             unset($url[0]); //eliminamos
-            var_dump($url);
+            //var_dump($url);
         }
 
         //Solicitamos la clase controller.
@@ -41,9 +41,10 @@ class Control {
             }
         }
         //parametros
-        $this->parametros = $url;
-        print "<br>Metodo: ".$this->metodo."<br>";
-        var_dump($this->parametros);
+        $this->parametros = $url?array_values($url):[]; //por si es posible de que llegue vacio utilizamos array_values()
+        //print "<br>Metodo: ".$this->metodo."<br>"; Comprobamos si funciona
+        //var_dump($this->parametros);
+        call_user_func_array([$this->controlador,$this->metodo],$this->parametros);
     }
 
     public function separarURL()

@@ -1,6 +1,6 @@
 <?php
 /**
- * Aqui crearemos los metodos auxiliares
+ * Aqui crearemos los metodos auxiliares, que se ejecutaran siempre o varias veces.
  */
 
  class Auxiliar
