@@ -43,8 +43,13 @@ class Login extends Auxiliar {
             if(empty($errores)){
                 if ($this->modelo->validarCorreo($email)) {
                     //enviamos email
-                    var_dump("Correo válido!");
-                    exit(0);
+                    //var_dump("Correo válido!");
+                    //exit(0);
+                    if ($this->modelo->enviarEmail($email)) {
+                        print "email enviado";
+                    }else{
+                        array_push($errores,"Ese email no no fue enviado correctamente, lo sentimos.");
+                    }
                 } else {
                     array_push($errores,"Ese email no se encuentra en nuestra base de datos");
                 }
