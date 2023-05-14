@@ -4,36 +4,43 @@
  */
 class Login extends Auxiliar {
 
+    private $modelo;
+
     function __construct()
     {
-        print "Hola desde Login<br>";
+        $this->modelo = $this->modelo("LoginModelo"); //el metodo modelo, lo heredamos de la clase Auxiliar.
     }
 
     //Este es un metodo para la vista.
     public function caratula()
     {
-        print "Hola desde metodo caratula<br>";
+        $datos = [];
+        $this->vista("loginVista", $datos); //loginVista viene de views, es un archivo php
+    
     }
 
-    // Creamos un metodo que tomara todos los valores de los parametros introducidos en la url
-    public function metodoVariable()
-    {
-        if (func_num_args()>0) {
-            for($i=0; $i < func_num_args(); $i++){
-                print func_get_arg($i)."<br>";
-            }
-        } else {
-            print "Hola desde metodo variable , no hay argumentos<br>";
-        }
+    // Creamos un metodo que tomara todos los valores de los parametros introducidos en la url para ver como funciona MVC
+    // public function metodoVariable()
+    // {
+    //     if (func_num_args()>0) {
+    //         for($i=0; $i < func_num_args(); $i++){
+    //             print func_get_arg($i)."<br>";
+    //         }
+    //     } else {
+    //         print "Hola desde metodo variable , no hay argumentos<br>";
+    //     }
         
-    }
+    // }
 
-    // Asi tambien creamos un metodo con parametros fijos.
-    public function metodoFijo($p1="Uno",$p2="Dos")
-    {
+    // // Asi tambien creamos un metodo con parametros fijos.
+    // public function metodoFijo($p1="Uno",$p2="Dos")
+    // {
         
-         print $p1."Hola desde metodo fijo<br>";
-         print $p2."Hola desde metodo fijo<br>";
+    //      print $p1."Hola desde metodo fijo<br>";
+    //      print $p2."Hola desde metodo fijo<br>";
         
-    }
+    // }
+
+
+
 }
