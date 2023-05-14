@@ -35,7 +35,7 @@ class Mysqldb{
             //code...
             $this->conn = new PDO($connString,$this->user,$this->pass);
             $this->conn->setAttribute(PDO::ERRMODE_EXCEPTION,PDO::ATTR_PERSISTENT);
-            print "exito";
+            // print "exito";  comprobamos la conexion.
         } catch (PDOException $e) {
             return "Error de conexion: ".$e->getMessage();
         }
