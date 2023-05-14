@@ -28,19 +28,19 @@ class LoginModelo{
             return false;
         }else{
             $data = $this->getUsuarioEmail($email);
-            if (!empty($data)) {
+            if (empty($data)) {
                 // var_dump($data); Comprobamos que recibimos datos
                 $id = $data["id"];
                 $nombre = $data["nombre"];
 
                 $msg = $nombre. ", entra al siguiente link, para cambiar tu contraseña de acceso al sistema....<br>";
-                $msg.="<a href='".RUTA."'login/cambiarClave/'".$id."'>Cambiar contraseña</a>";
+                $msg.="<a href='".RUTA."'login/cambiarclave/'".$id."'>Cambiar contraseña</a>'";
 
                 $headers = "MIME-Version: 1.0\r\n";
                 $headers.= "Content-type: text/html; charset=UTF-8\r\n";
                 $headers.= "From: Henry-Aplicacion\r\n";
                 $headers.= "Reply-to: soporte@henryapp.com\r\n";
-                var_dump($msg); //Compruebo que salga datos.
+                //var_dump($msg); //Compruebo que salga datos.
                 return @mail($email,$asunto,$msg,$headers); //Se utiliza arroba cuando no queremos mostrar nada visual.
 
             } else {

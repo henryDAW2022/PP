@@ -45,8 +45,22 @@ class Login extends Auxiliar {
                     //enviamos email
                     //var_dump("Correo válido!");
                     //exit(0);
-                    if ($this->modelo->enviarEmail($email)) {
-                        print "email enviado";
+                    if (!$this->modelo->enviarEmail($email)) {
+                        //print "email enviado";
+                        $datos = [
+                            "titulo" => "Cambio de clave de acceso",
+                            "menu" =>false,
+                            "errores" => [],
+                            "data" => [],
+                            "subtitulo" => "Cambio de clave de acceso",
+                            "texto" => "Se ha enviado un correo a <b>".$email."</b> para que puedas cambiar tu clave de acceso.
+                            Si necesitas ayuda envianos un correo a soporte@henryapp.com. No olvides revisar tu bandeja de spam.",
+                            "color" => "alert-success",
+                            "url" => "login",
+                            "colorBoton" => "btn-success",
+                            "textBoton" => "Regresar"
+                        ];
+                        $this->vista("mensajeVista",$datos);
                     }else{
                         array_push($errores,"Ese email no no fue enviado correctamente, lo sentimos.");
                     }
@@ -55,6 +69,9 @@ class Login extends Auxiliar {
                 }
                 
             }
+            if(!empty($errores)){
+
+            
                 $datos = [
                     "titulo" => "Olvido de Contraseña",
                     "subtitulo" => "¿Olvidaste tu contraseña?",
@@ -63,7 +80,7 @@ class Login extends Auxiliar {
                 ];
                 $this->vista("loginOlvidoVista", $datos); //loginVista viene de views, es un archivo php
             
-
+            }
         } else {
             $datos = [
                 "titulo" => "Olvido de Contraseña",
@@ -74,6 +91,23 @@ class Login extends Auxiliar {
             $this->vista("loginOlvidoVista", $datos); //loginVista viene de views, es un archivo php
         }
     
+    }
+
+    //Metodo para cambiar clave de acceso
+    public function cambiarclave($id='')
+    {
+        $errores=[];
+        if ($_SERVER['REQUEST_METHOD']=='POST') {
+        
+        } else {
+            $datos = [
+                "titulo" => "Cambio de Contraseña",
+                "subtitulo" => "Cambio de contraseña",
+                "errores" => $errores,
+                "datos" => $id
+            ];
+            $this->vista("loginCambioVista", $datos);
+        }
     }
     // Creamos un metodo que tomara todos los valores de los parametros introducidos en la url para ver como funciona MVC
     // public function metodoVariable()

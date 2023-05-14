@@ -4,7 +4,7 @@ include_once ("header.php");
                 <h1 class="text-center"><?php print $datos["subtitulo"]; ?></h1>
                 <div class="card p-4 bg-light">
                     
-                    <form action="<?php print RUTA;?>login/verifica/" method="post">
+                    <form action="<?php print RUTA;?>login/verifica/">
                         <div class="mb-3">
                           <label for="">*Usuario: </label>
                           <input type="text" name="usuario" id="usuario" class="form-control" placeholder="introduce tu nombre de usuario o email" >
