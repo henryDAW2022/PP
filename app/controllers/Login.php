@@ -14,7 +14,10 @@ class Login extends Auxiliar {
     //Este es un metodo para la vista.
     public function caratula()
     {
-        $datos = [];
+        $datos = [
+            "titulo" => "Entrada",
+            "subtitulo" => "Entrada al sistema"
+        ];
         $this->vista("loginVista", $datos); //loginVista viene de views, es un archivo php
     
     }

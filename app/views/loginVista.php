@@ -1,50 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+include_once ("header.php");
+?>
+                <h1 class="text-center"><?php print $datos["subtitulo"]; ?></h1>
+                <div class="card p-4 bg-light">
+                    
+                    <form action="" method="post">
+                        <div class="mb-3">
+                          <label for="">*Usuario: </label>
+                          <input type="text" name="usuario" id="usuario" class="form-control" placeholder="introduce tu nombre de usuario o email" >
+                        </div>
+                   
+                        <div class="mb-3">
+                          <label for="">*Contraseña: </label>
+                          <input type="password" name="pass" id="pass" class="form-control" placeholder="Contraseña.." >
+                        </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login App</title>
-    <link rel="shortcut icon" href=".../public/img/favicon.ico" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+                        <div>
+                            <div class="row g-3 align-items-center">
+                                <div class="col-auto centrarme">
+                                <input type="checkbox" name="recuerda" id="recuerda">
+                                
+                                <label for="" class="col-form-label">Recordar </label>
+                                </div>
+                                <div class="col-auto">
+                                <button type="submit" class="btn btn-primary" style="margin:auto 200px;">Entrar</button>
+                                </div>
+                            </div> 
+                            <a href="http://" class="" style="text-decoration: none;">*Registrarme</a>
+                            
+                        </div>
+                    </form>
+                </div>                
 
-</head>
-
-<body>
-
-    <nav class="navbar nav-bat-espand-sm bg-dark navbar-dark">
-        <a href"#" class="navbar-brand">App Henry</a>
-    </nav>
-    <div class="container-fluid">
-        <div class="row-content">
-            <div class="col-sm-2">
-
-            </div>
-            <div class="col-sm-8">
-                <table>
-                    <tr>
-                        <td>Usuario:</td>
-                        <td><input type="text" name="usuario"></td>
-                    </tr>
-                    <tr>
-                        <td>Contraseña:</td>
-                        <td><input type="password" name="pass"></td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td><input type="submit" value="Aceptar"></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="col-sm-2">
-                
-            </div>
-        </div>
-
-    </div>
-
-</body>
-
-</html>
+<?php
+include_once ("header.php");
+?>
