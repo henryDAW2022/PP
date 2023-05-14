@@ -24,12 +24,43 @@ class Login extends Auxiliar {
 
     public function olvido()
     {
-        $datos = [
-            "titulo" => "Olvido de Contraseña",
-            "subtitulo" => "¿Olvidaste tu contraseña?",
-            "datos" => []
-        ];
-        $this->vista("loginOlvidoVista", $datos); //loginVista viene de views, es un archivo php
+
+        //haremos un if, para ver si estamos recibiendo informacion por medio del METHOD_REQUEST
+
+        $errores=[];
+        if ($_SERVER['REQUEST_METHOD']=='POST') {
+            $email = $_POST['email']??""; //es una forma contraida
+
+            if($email==""){
+                array_push($errores,"El email es requerido");
+            }
+            if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
+                array_push($errores,"El email no es válido");
+            }
+
+            //Procesamiento
+            var_dump($errores);
+            if(empty($errores)){
+
+            }else{
+                $datos = [
+                    "titulo" => "Olvido de Contraseña",
+                    "subtitulo" => "¿Olvidaste tu contraseña?",
+                    "errores" => $errores,
+                    "datos" => []
+                ];
+                $this->vista("loginOlvidoVista", $datos); //loginVista viene de views, es un archivo php
+            }
+
+        } else {
+            $datos = [
+                "titulo" => "Olvido de Contraseña",
+                "subtitulo" => "¿Olvidaste tu contraseña?",
+                "errores" => $errores,
+                "datos" => []
+            ];
+            $this->vista("loginOlvidoVista", $datos); //loginVista viene de views, es un archivo php
+        }
     
     }
     // Creamos un metodo que tomara todos los valores de los parametros introducidos en la url para ver como funciona MVC
