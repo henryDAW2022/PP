@@ -4,7 +4,7 @@ include_once ("header.php");
                 <h1 class="text-center"><?php print $datos["subtitulo"]; ?></h1>
                 <div class="card p-4 bg-light">
                     
-                    <form action="/MVC/PP/login/olvido/" method="post">
+                    <form action="<?php print RUTA;?>login/olvido/" method="post">
                         <div class="mb-3">
                           <label for="">*Email: </label>
                           <input type="text" name="email" id="email" class="form-control" placeholder="introduce email con el que te registraste.." >
@@ -14,7 +14,7 @@ include_once ("header.php");
                                 
                                 <div class="col-auto">
                                 <input type="submit" class="btn btn-primary" value="Enviar">
-                                <a href="/MVC/PP/" type="button" class="btn btn-info">Regresar</a>
+                                <a href="<?php print RUTA;?>" type="button" class="btn btn-info">Regresar</a>
                                 </div>
                             </div> 
                             

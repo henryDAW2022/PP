@@ -4,7 +4,7 @@ include_once ("header.php");
                 <h1 class="text-center"><?php print $datos["subtitulo"]; ?></h1>
                 <div class="card p-4 bg-light">
                     
-                    <form action="" method="post">
+                    <form action="<?php print RUTA;?>login/verifica/" method="post">
                         <div class="mb-3">
                           <label for="">*Usuario: </label>
                           <input type="text" name="usuario" id="usuario" class="form-control" placeholder="introduce tu nombre de usuario o email" >
@@ -28,7 +28,7 @@ include_once ("header.php");
                             </div>                            
                         </div>
                     </form>
-                    <a href="../PP/login/olvido/" style="display:inline-block">Olvidé mi contraseña</a><a href="http://" class="" style="text-decoration: none;"style="display:inline-block">*Registrarme</a>
+                    <a href="<?php print RUTA;?>login/olvido/" style="display:inline-block">Olvidé mi contraseña</a><a href="http://" class="" style="text-decoration: none;"style="display:inline-block">*Registrarme</a>
                 </div>                
 
 <?php
