@@ -39,10 +39,17 @@ class Login extends Auxiliar {
             }
 
             //Procesamiento
-            var_dump($errores);
+            //var_dump($errores); compruebo si estoy capturando el mensaje de error
             if(empty($errores)){
-
-            }else{
+                if ($this->modelo->validarCorreo($email)) {
+                    //enviamos email
+                    var_dump("Correo válido!");
+                    exit(0);
+                } else {
+                    array_push($errores,"Ese email no se encuentra en nuestra base de datos");
+                }
+                
+            }
                 $datos = [
                     "titulo" => "Olvido de Contraseña",
                     "subtitulo" => "¿Olvidaste tu contraseña?",
@@ -50,7 +57,7 @@ class Login extends Auxiliar {
                     "datos" => []
                 ];
                 $this->vista("loginOlvidoVista", $datos); //loginVista viene de views, es un archivo php
-            }
+            
 
         } else {
             $datos = [
