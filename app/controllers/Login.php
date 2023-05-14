@@ -22,6 +22,16 @@ class Login extends Auxiliar {
     
     }
 
+    public function olvido()
+    {
+        $datos = [
+            "titulo" => "Olvido de Contraseña",
+            "subtitulo" => "¿Olvidaste tu contraseña?",
+            "datos" => []
+        ];
+        $this->vista("loginOlvidoVista", $datos); //loginVista viene de views, es un archivo php
+    
+    }
     // Creamos un metodo que tomara todos los valores de los parametros introducidos en la url para ver como funciona MVC
     // public function metodoVariable()
     // {

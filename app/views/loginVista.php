@@ -23,13 +23,12 @@ include_once ("header.php");
                                 <label for="" class="col-form-label">Recordar </label>
                                 </div>
                                 <div class="col-auto">
-                                <button type="submit" class="btn btn-primary" style="margin:auto 200px;">Entrar</button>
+                                <input type="submit" class="btn btn-primary" style="margin:auto 200px;" value="Entrar">
                                 </div>
-                            </div> 
-                            <a href="http://" class="" style="text-decoration: none;">*Registrarme</a>
-                            
+                            </div>                            
                         </div>
                     </form>
+                    <a href="../PP/login/olvido/" style="display:inline-block">Olvidé mi contraseña</a><a href="http://" class="" style="text-decoration: none;"style="display:inline-block">*Registrarme</a>
                 </div>                
 
 <?php
