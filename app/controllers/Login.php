@@ -15,7 +15,9 @@ class Login extends Auxiliar {
     public function caratula()
     {
         if(isset($_COOKIE["datos"])){
-            $datos_array = explode("|",$_COOKIE["datos"]);
+
+            $datos = Helper::desencriptar($_COOKIE["datos"]); //desencriptamos los datos del usuario
+            $datos_array = explode("|",$datos);
             $usuario = $datos_array[0];
             $clave = $datos_array[1];
             $data = [
@@ -41,7 +43,7 @@ class Login extends Auxiliar {
         //haremos un if, para ver si estamos recibiendo informacion por medio del METHOD_REQUEST POST
 
         $errores=[];
-        if ($_SERVER['REQUEST_METHOD']=='POST') {
+        if ($_SERVER['REQUEST_METHOD']=='POST') { //recepcion dedatos.
             $email = $_POST['email']??""; //es una forma contraida
 
             //validaciones
@@ -59,7 +61,7 @@ class Login extends Auxiliar {
                     //enviamos email
                     //var_dump("Correo válido!");
                     //exit(0);
-                    if (!$this->modelo->enviarEmail($email)) {
+                    if ($this->modelo->enviarEmail($email)) {
                         //print "email enviado";
                         $datos = [
                             "titulo" => "Cambio de clave de acceso",
@@ -83,9 +85,7 @@ class Login extends Auxiliar {
                 }
                 
             }
-            if(!empty($errores)){
-
-            
+            if(!empty($errores)){            
                 $datos = [
                     "titulo" => "Olvido de Contraseña",
                     "subtitulo" => "¿Olvidaste tu contraseña?",
@@ -172,6 +172,9 @@ class Login extends Auxiliar {
             }
 
         } else {
+            $id = Helper::desencriptar($id);
+            // var_dump($id);
+            // exit(); //compruebo encriptacion
             $datos = [
                 "titulo" => "Cambio de Contraseña",
                 "subtitulo" => "Cambio de contraseña",
@@ -195,6 +198,8 @@ class Login extends Auxiliar {
             //recuerdame
 
             $valor = $usuario."|".$clave;
+            $valor = Helper::encriptar($valor);
+           
             if ($recordar=="on") {
                 $fecha = time()+(60*60*24*7);
             } else {

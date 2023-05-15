@@ -3,7 +3,7 @@
  * Tablero Dashboard
  */
 
- class Tablero {
+ class Tablero extends Auxiliar {
     private $modelo;
 
     function __construct()
