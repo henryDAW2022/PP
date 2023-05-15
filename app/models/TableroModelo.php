@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Admin Modelo
+ * Tablero Modelo
  */
 
- class AdminModelo{
+ class TableroModelo{
     function __construct()
     {
         $this->db = new Mysqldb();

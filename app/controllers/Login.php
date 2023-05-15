@@ -220,7 +220,7 @@ class Login extends Auxiliar {
 
 
                 //pasaremos a la vista del dashboard de admin
-                header("location:".RUTA."admin");
+                header("location:".RUTA."tablero");
             }else{
                 //datos erroneos
                 $datos =[

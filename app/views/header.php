@@ -13,8 +13,46 @@
 </head>
 <body>
 
-    <nav class="navbar nav-bat-espand-sm bg-dark navbar-dark">
-        <a href"#" class="navbar-brand">App Henry</a>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <a href="<?php print RUTA.'tablero/';?>" class="navbar-brand">App Henry</a>
+        <?php
+            if(isset($datos["menu"]) && $datos["menu"]==true) { //el true es innecesario, pero para claridad se pone
+                print "<ul class='navbar-nav mr-auto mt-2 mt-lg-0'>";
+                    print "<li class='nav-item'>";
+                    print "<a href='".RUTA."gestempleados' class='nav-link";
+                    if(isset($datos["activo"]) && $datos["activo"]=="gestemp") print "active";
+                    print"'>Gestion Empleados</a>";
+                    print "</li>";
+                    //
+                    print "<li class='nav-item'>";
+                    print "<a href='".RUTA."analitica' class='nav-link";
+                    if(isset($datos["activo"]) && $datos["activo"]=="analitica") print "active";
+                    print"'>Análisis</a>";
+                    print "</li>";
+                    //
+                    print "<li class='nav-item'>";
+                    print "<a href='".RUTA."trayectos' class='nav-link";
+                    if(isset($datos["activo"]) && $datos["activo"]=="trayectos") print "active";
+                    print"'>Trayectos</a>";
+                    print "</li>";
+                    //
+                    print "<li class='nav-item'>";
+                    print "<a href='".RUTA."horarios' class='nav-link";
+                    if(isset($datos["activo"]) && $datos["activo"]=="horarios") print "active";
+                    print"'>Horarios</a>";
+                    print "</li>";
+                print "</ul>";
+                //
+                print "<ul class='nav navbar-nav ms-auto'>";
+                    print "<li class='nav-item'>";
+                    print "<a href='".RUTA."tablero/perfil' class='nav-link'>| Perfil </a>";
+                    print "</li>";
+                    print "<li class='nav-item'>";
+                    print "<a href='".RUTA."tablero/logout' class='nav-link'>| Salir </a>";
+                    print "</li>";
+                print "</ul>";
+            }
+        ?>
     </nav>
     <div class="container-fluid">
         <div class="row content">

@@ -3,12 +3,12 @@
  * Admin Dashboard
  */
 
- class Admin extends Auxiliar {
+ class Tablero extends Auxiliar {
     private $modelo;
 
     function __construct()
     {
-        $this->modelo = $this->modelo("AdminModelo");
+        $this->modelo = $this->modelo("TableroModelo");
     }
 
     function caratula(){
@@ -20,7 +20,7 @@
                 "subtitulo" => "Bienvenid@ a App",
                 "menu" => true
             ];
-            $this->vista("adminCaratulaVista",$datos);
+            $this->vista("tableroCaratulaVista",$datos);
         }else{
             header("location:".RUTA);
         }
