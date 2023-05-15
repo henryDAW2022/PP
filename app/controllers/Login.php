@@ -207,12 +207,19 @@ class Login extends Auxiliar {
 
             // validacion
             if(empty($errores)){
+
+                //Iniciar Sesion
+                $data = $this->modelo->getUsuarioEmail($usuario);
+                $sesion = new Sesion();
+                $sesion->iniciarLogin($data); //Lo almacenamos en sesion() par no ir a la bd
+
+
                 //pasaremos a la vista del dashboard de admin
                 header("location:".RUTA."admin");
             }else{
                 //datos erroneos
                 $datos =[
-                    "titulo" => "login",
+                    "titulo" => "Login",
                     "subtitulo" => "Entrada al sistema",
                     "menu" => false,
                     "errores" => $errores
