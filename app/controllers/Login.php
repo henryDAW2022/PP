@@ -98,7 +98,65 @@ class Login extends Auxiliar {
     {
         $errores=[];
         if ($_SERVER['REQUEST_METHOD']=='POST') {
-        
+            $id = isset($_POST["id"])?$_POST["id"]:"";
+            $clave1 = isset($_POST["clave"])?$_POST["clave"]:"";
+            $clave2 = isset($_POST["verifica"])?$_POST["verifica"]:"";
+
+            //validaciones
+
+            if($clave1==""){
+                array_push($errores,"La clave de acceso es requerida");
+            }
+            if($clave2==""){
+                array_push($errores,"La clave de acceso de verificacion es requerida");
+            }
+            if($clave1!=$clave2){
+                array_push($errores,"Las claves de acceso no coinciden");
+            }
+
+            if(count($errores)){
+                //si hay errores
+                $datos = [
+                    "titulo" => "Cambiar clave de acceso",
+                    "subtitulo" => "Cambiar clave de acceso",
+                    "menu" => false,
+                    "errores" => $errores,
+                    "data" => $id
+                ];
+                $this->vista("loginCambioVista",$datos);
+            }else {
+                //No hay errores
+                if($this->modelo->cambiarClaveAcceso($id, $clave1)){
+                    $datos = [
+                        "titulo" => "Modificar clave de acceso",
+                        "menu" => false,
+                        "errores" => [],
+                        "data" => $id,
+                        "subtitulo" => "Modificar clave de acceso",
+                        "texto" => "La modificacion de la clave de acceso se ha realizado con exito",
+                        "color" => "alert-success",
+                        "url" =>"login",
+                        "colorBoton" => "btn-success",
+                        "textoBoton" => "Regresar"
+                    ];
+                    $this->vista("mensajeVista",$datos);
+                } else {
+                    $datos = [
+                        "titulo" => "Error al modificar la clave de acceso",
+                        "menu" => false,
+                        "errores" => [],
+                        "data" => $id,
+                        "subtitulo" => "Error al modificar la clave de acceso",
+                        "texto" => "La modificacion de la clave de acceso no se ha realizado, existe un error",
+                        "color" => "alert-danger",
+                        "url" =>"login",
+                        "colorBoton" => "btn-danger",
+                        "textoBoton" => "Regresar"
+                    ];
+                    $this->vista("mensajeVista",$datos);
+                }
+            }
+
         } else {
             $datos = [
                 "titulo" => "Cambio de Contraseña",
