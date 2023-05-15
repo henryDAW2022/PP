@@ -25,12 +25,13 @@ class Login extends Auxiliar {
     public function olvido()
     {
 
-        //haremos un if, para ver si estamos recibiendo informacion por medio del METHOD_REQUEST
+        //haremos un if, para ver si estamos recibiendo informacion por medio del METHOD_REQUEST POST
 
         $errores=[];
         if ($_SERVER['REQUEST_METHOD']=='POST') {
             $email = $_POST['email']??""; //es una forma contraida
 
+            //validaciones
             if($email==""){
                 array_push($errores,"El email es requerido");
             }
@@ -62,7 +63,7 @@ class Login extends Auxiliar {
                         ];
                         $this->vista("mensajeVista",$datos);
                     }else{
-                        array_push($errores,"Ese email no no fue enviado correctamente, lo sentimos.");
+                        array_push($errores,"El email no fue enviado correctamente, lo sentimos.");
                     }
                 } else {
                     array_push($errores,"Ese email no se encuentra en nuestra base de datos");
@@ -76,7 +77,7 @@ class Login extends Auxiliar {
                     "titulo" => "Olvido de Contraseña",
                     "subtitulo" => "¿Olvidaste tu contraseña?",
                     "errores" => $errores,
-                    "datos" => []
+                    "data" => []
                 ];
                 $this->vista("loginOlvidoVista", $datos); //loginVista viene de views, es un archivo php
             
@@ -86,7 +87,7 @@ class Login extends Auxiliar {
                 "titulo" => "Olvido de Contraseña",
                 "subtitulo" => "¿Olvidaste tu contraseña?",
                 "errores" => $errores,
-                "datos" => []
+                "data" => []
             ];
             $this->vista("loginOlvidoVista", $datos); //loginVista viene de views, es un archivo php
         }
@@ -102,7 +103,7 @@ class Login extends Auxiliar {
             $clave1 = isset($_POST["clave"])?$_POST["clave"]:"";
             $clave2 = isset($_POST["verifica"])?$_POST["verifica"]:"";
 
-            //validaciones
+            //validaciones básicas
 
             if($clave1==""){
                 array_push($errores,"La clave de acceso es requerida");
@@ -137,7 +138,7 @@ class Login extends Auxiliar {
                         "color" => "alert-success",
                         "url" =>"login",
                         "colorBoton" => "btn-success",
-                        "textoBoton" => "Regresar"
+                        "textBoton" => "Regresar"
                     ];
                     $this->vista("mensajeVista",$datos);
                 } else {
@@ -145,13 +146,13 @@ class Login extends Auxiliar {
                         "titulo" => "Error al modificar la clave de acceso",
                         "menu" => false,
                         "errores" => [],
-                        "data" => $id,
+                        "data" => [],
                         "subtitulo" => "Error al modificar la clave de acceso",
                         "texto" => "La modificacion de la clave de acceso no se ha realizado, existe un error",
                         "color" => "alert-danger",
                         "url" =>"login",
                         "colorBoton" => "btn-danger",
-                        "textoBoton" => "Regresar"
+                        "textBoton" => "Regresar"
                     ];
                     $this->vista("mensajeVista",$datos);
                 }
@@ -162,9 +163,37 @@ class Login extends Auxiliar {
                 "titulo" => "Cambio de Contraseña",
                 "subtitulo" => "Cambio de contraseña",
                 "errores" => $errores,
-                "datos" => $id
+                "data" => $id
             ];
             $this->vista("loginCambioVista", $datos);
+        }
+    }
+
+
+    public function verificar()
+    {
+        $errores = [];
+        if ($_SERVER['REQUEST_METHOD']=='POST') {
+            $usuario = $_POST['usuario']??"";
+            $clave = $_POST["pass"]??"";
+            $recordar = isset($_POST['recuerda'])?"on":"off";
+            $errores = $this->modelo->verificar($usuario, $clave);
+
+
+            // validacion
+            if(empty($errores)){
+                //pasaremos a la vista del dashboard de admin
+                header("location:".RUTA."home");
+            }else{
+                //datos erroneos
+                $datos =[
+                    "titulo" => "login",
+                    "subtitulo" => "Entrada al sistema",
+                    "menu" => false,
+                    "errores" => $errores
+                ];
+                $this->vista("loginVista",$datos);
+            }
         }
     }
     // Creamos un metodo que tomara todos los valores de los parametros introducidos en la url para ver como funciona MVC

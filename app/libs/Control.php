@@ -18,7 +18,7 @@ class Control {
     {
         $url = $this->separarURL();
         //verificamos lo que recibimos var_dump()
-        // var_dump($url);
+        //var_dump($url);
 
         if($url!="" && file_exists("../app/controllers/".ucwords($url[0]).".php")) //queremos ejecutar un controlador, para ello miramos que url no sea vacio y que el controlador existe
         {
@@ -42,9 +42,10 @@ class Control {
         }
         //parametros
         $this->parametros = $url?array_values($url):[]; //por si es posible de que llegue vacio utilizamos array_values()
-        //print "<br>Metodo: ".$this->metodo."<br>"; Comprobamos si funciona
+        //print "<br>Metodo: ".$this->metodo."<br>"; //Comprobamos si funciona
         //var_dump($this->parametros);
         call_user_func_array([$this->controlador,$this->metodo],$this->parametros);
+        
     }
 
     public function separarURL()

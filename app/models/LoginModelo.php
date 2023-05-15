@@ -15,7 +15,7 @@ class LoginModelo{
     //Metodo para validar correo
     public function validarCorreo($email)
     {
-        $query = "SELECT * FROM Admin WHERE email='".$email."'";
+        $query = "SELECT * FROM admin WHERE email='".$email."'";
         $data = $this->db->query($query);
         return (count($data)==0)?false:true;
     }
@@ -41,7 +41,7 @@ class LoginModelo{
                 $headers.= "From: Henry-Aplicacion\r\n";
                 $headers.= "Reply-to: soporte@henryapp.com\r\n";
                 //var_dump($msg); //Compruebo que salga datos.
-                return @mail($email,$asunto,$msg,$headers); //Se utiliza arroba cuando no queremos mostrar nada visual.
+                return @mail($email,$msg,$headers); //Se utiliza arroba cuando no queremos mostrar nada visual.
 
             } else {
                 return false;
@@ -53,12 +53,38 @@ class LoginModelo{
 
     public function getUsuarioEmail($email="")
     {
-        $sql = "SELECT * FROM Admin WHERE email='".$email."' and status='activo'";
+        $sql = "SELECT * FROM admin WHERE email='".$email."' and status='activo'";
         $data = $this->db->query($sql);
         return $data;
     }
 
 
+    public function cambiarClaveAcceso($id, $clave){  //ojo con la sintaxis...dio error por un espacio en la sentencia sql faltaba espacios
+        $r = false;
+        $clave = hash_hmac("sha512", $clave, CLAVE);
+        $sql = "UPDATE admin SET ";
+        $sql.= "pass='".$clave."' ";
+        $sql.="WHERE id=".$id;
+        $r = $this->db->queryBoolean($sql);
+        return $r;
+    }
 
+    public function verificar($usuario, $clave){
+        $errores = array();
+        $sql = "SELECT * FROM admin WHERE email='".$usuario."'";
+        $clave = hash_hmac("sha512", $clave, CLAVE);
+        $clave = substr($clave,0,200);
+
+        //consulta
+        $data = $this->db->query($sql);
+
+        //validacion
+        if (empty($data)){
+            array_push($errores, "No existe ese usuario en nuestra base de datos, asegurate de haber ingresado bien los datos.");
+        }else if($clave!=$data["pass"]){
+            array_push($errores, "Clave de acceso erronea, asegurate de haber ingresado bien los datos.");
+        }
+        return $errores;
+    }
 
 }

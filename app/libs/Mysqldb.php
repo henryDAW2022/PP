@@ -59,10 +59,8 @@ class Mysqldb{
         return $data;
      }
 
-     /**
-      * Queries que regresan valor booleano
-      */
-
+     
+      //Queries que regresan valor booleano
       public function queryBoolean($sql){
         return mysqli_query($this->conn, $sql);
       }

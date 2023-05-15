@@ -20,6 +20,7 @@ include_once ("header.php");
                                 <div class="col-auto centrarme">
                                     <input type="hidden" name="id" value="<?php print $datos['data']; ?>"/>
                                     <input type="submit" class="btn btn-primary" " value="Enviar">
+                                    
                                 </div>
                             </div>                            
                         </div>
@@ -27,5 +28,6 @@ include_once ("header.php");
                 </div>                
 
 <?php
-include_once ("header.php");
+
+include_once ("footer.php");
 ?>
