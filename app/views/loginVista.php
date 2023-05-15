@@ -7,18 +7,27 @@ include_once ("header.php");
                     <form action="<?php print RUTA;?>login/verificar/" method="post">
                         <div class="mb-3">
                           <label for="">*Usuario: </label>
-                          <input type="text" name="usuario" id="usuario" class="form-control" placeholder="introduce tu nombre de usuario o email" >
+                          <input type="text" name="usuario" id="usuario" class="form-control" placeholder="introduce tu nombre de usuario o email" 
+                                 value="<?php print isset($datos["data"]["usuario"])?$datos["data"]["usuario"]:"";?>"
+                          >
                         </div>
                    
                         <div class="mb-3">
                           <label for="">*Contraseña: </label>
-                          <input type="password" name="pass" id="pass" class="form-control" placeholder="Contraseña.." >
+                          <input type="password" name="pass" id="pass" class="form-control" placeholder="Contraseña.." 
+                                 value="<?php print isset($datos["data"]["clave"])?$datos["data"]["clave"]:"";?>"
+                          >
                         </div>
 
                         <div>
                             <div class="row g-3 align-items-center">
                                 <div class="col-auto centrarme">
-                                <input type="checkbox" name="recuerda" id="recuerda">
+                                <input type="checkbox" name="recuerda" id="recuerda"
+                                    <?php if(isset($datos["data"]["recrdar"])){
+                                            if($datos["data"]["recrdar"]== 'on') print "checked";
+                                          }
+                                    ?>
+                                >
                                 
                                 <label for="" class="col-form-label">Recordar </label>
                                 </div>

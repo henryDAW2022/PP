@@ -14,9 +14,22 @@ class Login extends Auxiliar {
     //Este es un metodo para la vista.
     public function caratula()
     {
+        if(isset($_COOKIE["datos"])){
+            $datos_array = explode("|",$_COOKIE["datos"]);
+            $usuario = $datos_array[0];
+            $clave = $datos_array[1];
+            $data = [
+                "usuario" => $usuario,
+                "clave" => $clave,
+                "recordar" => "on"
+            ];
+        }else{
+            $data = [];
+        }
         $datos = [
             "titulo" => "Entrada",
-            "subtitulo" => "Entrada al sistema"
+            "subtitulo" => "Entrada al sistema",
+            "data" => $data
         ];
         $this->vista("loginVista", $datos); //loginVista viene de views, es un archivo php
     
@@ -179,11 +192,23 @@ class Login extends Auxiliar {
             $recordar = isset($_POST['recuerda'])?"on":"off";
             $errores = $this->modelo->verificar($usuario, $clave);
 
+            //recuerdame
+
+            $valor = $usuario."|".$clave;
+            if ($recordar=="on") {
+                $fecha = time()+(60*60*24*7);
+            } else {
+                $fecha = time()-1;
+            }
+
+            setcookie("datos",$valor,$fecha,RUTA);
+            
+
 
             // validacion
             if(empty($errores)){
                 //pasaremos a la vista del dashboard de admin
-                header("location:".RUTA."home");
+                header("location:".RUTA."admin");
             }else{
                 //datos erroneos
                 $datos =[
