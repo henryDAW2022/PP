@@ -25,4 +25,13 @@
         list($data,$iv) = array_pad(explode("::",base64_decode($data),2),2,null);
         return openssl_decrypt($data,"aes-256-cbc",$llaveEncriptada,0,$iv);
     }
+
+    public static function cadena($cadena){
+        // Con este codigo, evitaremos lo que es la injection code.
+        $buscar = array("^", 'delete','drop', 'truncate','exec','system');
+        $reemplazar = array ('-','dele*te','dro*p','trunecat*e','ex*cute','sys*tem');
+        $cadena = str_replace($buscar, $reemplazar,$cadena);
+        $cadena = addslashes(htmlentities($cadena));
+        return $cadena;
+    }
  }

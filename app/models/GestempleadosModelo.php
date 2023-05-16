@@ -16,4 +16,24 @@ class GestempleadosModelo
 		$data = $this->db->querySelect($sql);
 		return $data;
 	}
+
+	public function altaConductor($data){
+		$sql = "INSERT INTO conductor VALUES(0,";     //.1 id
+		$sql.= "'".$data['nombre']."',";              //2. nombre
+		$sql.= "'".$data['apellidos']."',"; 		  //3. apellidos
+		$sql.= "'".$data['carnetConducir']."',";      //4. carnet conducir
+		$sql.= "'".$data['email']."',"; 			  //5. email
+		$sql.= "'12345',"; 							  //6. password general
+		$sql.= "'".$data['tlfn']."',"; 				  //7. telefono
+		$sql.= "'',"; 					  //8. fecha nacimiento olvidado arreglarlo
+		$sql.= "'1',"; 						  //9. status, activo por defecto en un alta nueva.
+		$sql.= "'',";						  //10. fecha login ....hay que mirar como lo definimos
+		$sql.= "'',";						  		  //11. fecha baja ....hay que mirar como lo definimos
+		$sql.= "'',";						      //12. fecha modif ....hoy por defecto para altas
+		$sql.= "'')";						      //13. fecha creacion ....hoy por defecto para altas
+
+		print $sql;
+		return $this->db->queryBoolean($sql);
+
+	}
 }
