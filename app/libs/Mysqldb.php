@@ -5,7 +5,7 @@ class Mysqldb{
     private $host = "localhost";
     private $user = "root";
     private $pass = "";
-    private $db = "prueba1";
+    private $db = "pp";
     private $puert = "";
     private $conn;
 
