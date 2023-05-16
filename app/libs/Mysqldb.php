@@ -65,6 +65,18 @@ class Mysqldb{
         return mysqli_query($this->conn, $sql);
       }
 
+      //Query que devuelve un array de todos los registros
+      public function querySelect($sql)
+      {
+        $data = array();
+        $r = mysqli_query($this->conn,$sql);
+        if($r){
+            while($row=mysqli_fetch_assoc($r)){
+                array_push($data,$row);
+            } 
+        }
+        return $data;
+      }
     
 
 }
