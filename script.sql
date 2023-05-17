@@ -132,3 +132,12 @@ INSERT INTO `Trayecto` (`id`,`idUsuario`,`idConductor`,`idVehiculo`,`fecha`,`fec
 ALTER TABLE `Trayecto` ADD CONSTRAINT `Trayecto_Conductor` FOREIGN KEY (`idConductor`) REFERENCES `Conductor`(`id`) ON DELETE SET NULL ON UPDATE SET NULL;
 ALTER TABLE `Trayecto` ADD CONSTRAINT `Trayecto_Usuario` FOREIGN KEY (`idUsuario`) REFERENCES `Usuario`(`id`) ON DELETE SET NULL ON UPDATE SET NULL;
  ALTER TABLE `Trayecto` ADD CONSTRAINT `Trayecto_Vehiculo` FOREIGN KEY (`idVehiculo`) REFERENCES `Vehiculo`(`id`) ON DELETE SET NULL ON UPDATE SET NULL;
+
+
+ CREATE TABLE `TotalConductores` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `status` varchar(5) NOT NULL,
+  `cant` int(5) NOT NULL
+ )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `totalconductores` (`id`, `status`, `cant`) VALUES ('1', 'activo', '2'), ('2', 'baja', '1');

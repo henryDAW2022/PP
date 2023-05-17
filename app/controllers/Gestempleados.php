@@ -19,12 +19,14 @@ class Gestempleados extends Auxiliar
 		if($sesion->getLogin()){
 			//Leeemos datos de la tabla
 			$data = $this->modelo->getEmpleados();
+			$data2 = $this->modelo->gettotalempleados();
 		$datos = [
 			"titulo" => "Empleados",
 			"subtitulo" => "Listado de conductores",
 			"menu" => true,
 			"activo" => "gestempleados",
-			"data" => $data
+			"data" => $data,
+			"data2" => $data2
 		];
 		$this->vista("empleadosCaratulaVista",$datos);
 		}else{
@@ -97,6 +99,22 @@ class Gestempleados extends Auxiliar
 			"menu" => true,
 			"activo" => "gestempleados",
 			"errores" => $errores,
+			"data" => $data
+		];
+		$this->vista("conductoresAltaVista", $datos);
+	}
+
+	public function modificar($id=""){
+		//Leemos los datos de la vista
+		$data = $this->modelo->getConductorId($id);
+
+		//Vista Alta
+		$datos= [
+			"titulo" => "Modificar datos del Conductor",
+			"subtitulo" => "Modificar datos del Conductor",
+			"menu" => true,
+			"activo" => "gestempleados",
+			"errores" => [],
 			"data" => $data
 		];
 		$this->vista("conductoresAltaVista", $datos);

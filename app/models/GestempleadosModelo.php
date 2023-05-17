@@ -11,11 +11,25 @@ class GestempleadosModelo
 		$this->db = new MySQLdb();
 	}
 
+
+	public function gettotalempleados(){
+		$sql= "SELECT * FROM totalconductores";
+		$data = $this->db->querySelect($sql);
+		return $data;
+	}
+
 	public function getEmpleados(){
 		$sql= "SELECT * FROM conductor";
 		$data = $this->db->querySelect($sql);
 		return $data;
 	}
+
+	public function getConductorId($id){
+		$sql= "SELECT * FROM conductor WHERE id=".$id." AND status=1";
+		$data = $this->db->query($sql);
+		return $data;
+	}
+
 
 	public function altaConductor($data){
 		$sql = "INSERT INTO conductor VALUES(0,";     //.1 id
@@ -35,5 +49,28 @@ class GestempleadosModelo
 		print $sql;
 		return $this->db->queryBoolean($sql);
 
+	}
+
+	public function modificaConductor($data)
+	{
+		$salida = false;
+		if(!empty($data["id"])){
+			$sql = "UPDATE conductor SET ";
+			$sql.="nombre='".$data["nombre"]."',";
+			$sql.="apellidos='".$data["apellidos"]."',";
+			$sql.="carnetConducir='".$data["carnetConducir"]."',";
+			$sql.="pass='".$data[""]."',";
+			$sql.="tlfn='".$data[""]."',";
+			$sql.="fechNac='".$data[""]."',";
+			$sql.="status='".$data[""]."',";
+			$sql.="login_dt='".$data[""]."',";
+			$sql.="baja_dt='".$data[""]."',";
+			$sql.="modificado_dt= (NOW())";
+			$sql.="WHERE id=".$data["id"];
+
+			//enviamos a la base de datos
+			$salida = $this->db->queryBoolean($sql);
+		}
+		return $salida;
 	}
 }
