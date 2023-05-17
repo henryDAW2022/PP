@@ -44,7 +44,7 @@ class GestempleadosModelo
 		$sql.= "'',";						  //10. fecha login ....hay que mirar como lo definimos
 		$sql.= "'',";						  		  //11. fecha baja ....hay que mirar como lo definimos
 		$sql.= "'',";						      //12. fecha modif ....hoy por defecto para altas
-		$sql.= "'')";						      //13. fecha creacion ....hoy por defecto para altas
+		$sql.= "NOW())";						      //13. fecha creacion ....hoy por defecto para altas
 
 		print $sql;
 		return $this->db->queryBoolean($sql);
@@ -59,12 +59,7 @@ class GestempleadosModelo
 			$sql.="nombre='".$data["nombre"]."',";
 			$sql.="apellidos='".$data["apellidos"]."',";
 			$sql.="carnetConducir='".$data["carnetConducir"]."',";
-			$sql.="pass='".$data[""]."',";
-			$sql.="tlfn='".$data[""]."',";
-			$sql.="fechNac='".$data[""]."',";
-			$sql.="status='".$data[""]."',";
-			$sql.="login_dt='".$data[""]."',";
-			$sql.="baja_dt='".$data[""]."',";
+			$sql.="tlfn='".$data["tlfn"]."',";
 			$sql.="modificado_dt= (NOW())";
 			$sql.="WHERE id=".$data["id"];
 
