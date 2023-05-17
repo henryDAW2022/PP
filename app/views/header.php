@@ -1,13 +1,3 @@
-<?php var_dump(count($datos['data'])); 
-
-if(isset($datos["data2"])){
-    for($i=0; $i<count($datos['data2']); $i++){
-        echo "['".$datos["data2"][$i]["status"]."',".$datos["data2"][$i]["cant"]."],";
-        //echo "['status',".$datos["data"][$i]["status"]."],";
-    }
-}
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
