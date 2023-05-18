@@ -61,7 +61,7 @@ class Login extends Auxiliar {
                     //enviamos email
                     //var_dump("Correo válido!");
                     //exit(0);
-                    if ($this->modelo->enviarEmail($email)) {
+                    if (!$this->modelo->enviarEmail($email)) { // Recuerda poner la negacion para probarlo, ya que no tenemos activado el servicio de email.
                         //print "email enviado";
                         $datos = [
                             "titulo" => "Cambio de clave de acceso",
