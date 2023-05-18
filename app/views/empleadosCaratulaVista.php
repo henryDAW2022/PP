@@ -103,7 +103,7 @@
                 print "<td class='text-left'>".$datos["data"][$i]["apellidos"]."</td>";
                 print "<td class='text-left'>".$datos["data"][$i]["creado_dt"]."</td>";
                 print "<td><a href='".RUTA."gestempleados/modificar/".$datos["data"][$i]["id"]."'class='btn btn-info'>Modificar</a></td>";
-                print "<td><a href='".RUTA."gestempleados/eliminar/".$datos["data"][$i]["id"]."'class='btn btn-danger'>Eliminar</a></td>";
+                print "<td><a href='".RUTA."gestempleados/baja/".$datos["data"][$i]["id"]."'class='btn btn-danger'>Eliminar</a></td>";
                 print "</tr>";
             }
         ?>

@@ -19,7 +19,7 @@ class GestempleadosModelo
 	}
 
 	public function getEmpleados(){
-		$sql= "SELECT * FROM conductor";
+		$sql= "SELECT * FROM conductor WHERE status=1";
 		$data = $this->db->querySelect($sql);
 		return $data;
 	}
@@ -51,7 +51,7 @@ class GestempleadosModelo
 
 	}
 
-	public function modificaConductor($data)
+	public function modificaConductor($data)   //Tengo que revisar los campos, porque me he saltado algunos. y sobre todo fechas.
 	{
 		$salida = false;
 		if(!empty($data["id"])){
@@ -65,6 +65,15 @@ class GestempleadosModelo
 
 			//enviamos a la base de datos
 			$salida = $this->db->queryBoolean($sql);
+		}
+		return $salida;
+	}
+
+	public function bajaLogica($id){
+		$salida = true;
+		$sql = "UPDATE conductor set status=0, baja_dt=(NOW()) WHERE id = ".$id;
+		if(!$this->db->queryBoolean($sql)){
+			$salida = false;
 		}
 		return $salida;
 	}

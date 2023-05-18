@@ -119,4 +119,33 @@ class Gestempleados extends Auxiliar
 		];
 		$this->vista("conductoresAltaVista", $datos);
 	}
+
+
+	public function baja($id="")
+	{
+		//leo primero los datos del registro.
+		$data = $this->modelo->getConductorId($id);
+
+		//Vista Baja
+		$datos = [
+			"titulo" => "Baja Conductor",
+			"subtitulo" => "Baja de Conductor",
+			"menu" => true,
+			"admin" =>false,
+			"errores" => [],
+			"activo" => 'gestempleados',
+			"data" => $data,
+			"baja" => true
+		];
+		$this->vista("conductoresAltaVista",$datos);
+	}
+
+	public function bajaLogica($id='')
+	{
+		if(isset($id)){
+			if($this->modelo->bajaLogica($id)){
+				header("location:".RUTA."gestempleados");
+			}
+		}	
+	}
 }
